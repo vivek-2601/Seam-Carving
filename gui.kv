@@ -1,0 +1,86 @@
+<MyScreen>:
+    id: MyScreen
+    AnchorLayout:
+        size_hint_y: .3
+        Button:
+            text: "Select"
+            id: b1
+            size: '100dp', '40dp'
+            size_hint: None, None
+            pos_hint: 0.2, 0.4
+            on_press: root.manager.current = 'FileChooser'
+            anchor_x: 'center'
+            anchor_y: 'bottom'
+
+
+<MyFileChooser>:
+    id: MyFileChooser
+    FileChooserIconView:
+        id: FileChooser
+        on_selection: MyFileChooser.on_selection(FileChooser.selection)
+
+<WorkWin>:
+    id: WorkWin
+    BoxLayout:
+        orientation: "horizontal"
+
+        BoxLayout:
+            orientation: "horizontal"
+            id: permnt_img
+        BoxLayout:
+            orientation: "horizontal"
+            id: varibl_img
+            
+    BoxLayout:
+        id: functions
+        orientation: "horizontal"
+        TextInput:
+            id: n_remove
+            size: '200dp', '40dp'
+            x: 0
+            size_hint: None, None
+            hint_text: "columns to remove"
+            multiline: 0
+            on_text_validate: WorkWin.on_text_validate(n_remove.text)
+        
+        TextInput:
+            id: nth_seam
+            size: '200dp', '40dp'
+            hint_text: "nth image"
+            disabled: 1
+            size_hint: None, None
+            multiline: 0
+            on_text_validate: WorkWin.nth_seam(nth_seam.text)
+
+        ToggleButton:
+            text: "Cropped"
+            size: "80dp", "40dp"
+            size_hint: None, None
+            group: "ok"
+            on_press: WorkWin.on_press_toggle(0)
+        
+        ToggleButton:
+            text: "Edges"
+            size: "80dp", "40dp"
+            group: "ok"
+            size_hint: None, None
+            on_press: WorkWin.on_press_toggle(1)
+
+        ToggleButton:
+            text: "E_map"
+            size: "80dp", "40dp"
+            group: "ok"
+            size_hint: None, None
+            on_press: WorkWin.on_press_toggle(2)
+        FloatLayout:
+            id: box
+            size: '371dp', '400dp'
+            size_hint: None, None
+            pos_hint: {"bottom":1}
+        FloatLayout:
+            id: box2
+            size_hint_y: .3
+
+
+
+    
